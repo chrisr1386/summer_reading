@@ -1,0 +1,18 @@
+<h1>Recommendations by Mrs. Root</h1>
+<br>
+
+<div class="col-md-4">
+  <div class="list-group">
+    <% @book_recommendations.each do |rec| %>
+      <%= link_to book_recommendation_path(rec) + "?by_teacher=true", class: "list-group-item #{@book_recommendation && rec.id == @book_recommendation.id ? 'active' : ''}" do %>
+        <h4 class="list-group-item-heading">
+          <%= rec.student.titleize %>
+        </h4>
+
+        <p class="list-group-item-text">
+          <%= rec.title.titleize %> by  <%= rec.author.titleize %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

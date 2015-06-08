@@ -1,0 +1,15 @@
+<%= bootstrap_form_for(@book_recommendation, label_errors: true) do |f| %>
+  <%= f.alert_message "Please fix the errors below." %>
+  
+  <%= f.text_field :student, class: "form-control", placeholder: "First name", label: "First name" %>
+
+  <%= f.text_field :title, class: "form-control", placeholder: "Book title" %>
+
+  <%= f.text_field :author, class: "form-control", placeholder: "Book author" %>
+
+  <%= f.text_area :description, class: "form-control", rows: "5", label: "I would recommend this book because..." %>
+    
+  <%= f.submit (@book_recommendation.id ? "Save" : "Add"), class: "btn btn-primary" %>
+  <%= link_to 'Cancel', book_recommendations_path, class: "pull-right btn btn-danger" %>
+
+<% end %>

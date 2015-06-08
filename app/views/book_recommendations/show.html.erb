@@ -1,0 +1,40 @@
+<%= link_to 'I want to recommend a book', new_book_recommendation_path, class: "pull-left btn btn-primary" %>
+
+<%= link_to "Comment on this recommendation", new_book_recommendation_comment_path(@book_recommendation), class: "btn btn-primary pull-right" %>
+
+<br>
+<br>
+
+<div class="col-md-4">
+  <div class="list-group">
+    <% @book_recommendations.each do |rec| %>
+      <%= link_to rec, class: "list-group-item #{@book_recommendation && rec.id == @book_recommendation.id ? 'active' : ''}" do %>
+        <h4 class="list-group-item-heading">
+          <%= rec.student.titleize %>
+        </h4>
+
+        <p class="list-group-item-text">
+          <%= rec.title.titleize %> by  <%= rec.author.titleize %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="col-md-8">
+  <p>
+    <h4>I would recommend this book because...</h4>
+    <%= @book_recommendation.description %>   
+  </p>
+
+  <% @book_recommendation.comments.each do |comment| %>
+    <div class="well well-sm">
+      <h4><%= comment.student.titleize %></h4>
+      <p><%= comment.body %></p>
+    </div>
+  <% end %>
+
+  <% if @book_recommendation.comments.empty? %>
+    <p>No comments yet</p>
+  <% end %>
+</div>

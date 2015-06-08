@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @finished_book.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @finished_book.author %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @finished_book.student %>
+</p>
+
+<p>
+  <strong>Central idea:</strong>
+  <%= @finished_book.central_idea %>
+</p>
+
+<%= link_to 'Edit', edit_finished_book_path(@finished_book) %> |
+<%= link_to 'Back', finished_books_path %>

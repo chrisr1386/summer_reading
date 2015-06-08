@@ -1,0 +1,17 @@
+<%= bootstrap_form_for(@finished_book, label_errors: true) do |f| %>
+  <%= f.alert_message "Please fix the errors below." %>
+  
+  <%= f.text_field :student, class: "form-control", placeholder: "First name", label: "First name" %>
+
+  <%= f.text_field :title, class: "form-control", placeholder: "Book title" %>
+
+  <%= f.text_field :author, class: "form-control", placeholder: "Book author" %>
+
+  <%= f.text_field :genre, class: "form-control", placeholder: "Informational or literature" %>
+
+  <%= f.text_area :central_idea, class: "form-control", rows: "5", label: "Central idea/Overarching story line" %>
+    
+  <%= f.submit (@finished_book.id ? "Save" : "Add"), class: "btn btn-primary" %>
+  <%= link_to 'Cancel', finished_books_path, class: "btn btn-danger pull-right" %>
+
+<% end %>

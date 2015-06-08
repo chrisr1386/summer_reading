@@ -1,0 +1,33 @@
+<h1></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Genre</th>
+      <th>Central idea/overarching story line</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @finished_books.each do |finished_book| %>
+      <tr>
+        <td><%= finished_book.student.titleize %></td>
+        <td><%= finished_book.title.titleize %></td>
+        <td><%= finished_book.author.titleize %></td>
+        <td><%= finished_book.genre %></td>
+        <td><%= truncate(finished_book.central_idea, length: 100) %></td>
+        <td><%= link_to 'Show', finished_book %></td>
+        <td><%= link_to 'Edit', edit_finished_book_path(finished_book) %></td>
+        <td><%= link_to 'Destroy', finished_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'I finished a book', new_finished_book_path, class: "btn btn-primary" %>
