@@ -3,7 +3,7 @@
 <br>
 <br>
 
-<div class="col-md-4">
+<div class="col-md-4" style="padding-left: 0;">
   <div class="list-group">
     <% @book_recommendations.each do |rec| %>
       <%= link_to rec, class: "list-group-item" do %>
@@ -17,8 +17,4 @@
       <% end %>
     <% end %>
   </div>
-</div>
-
-<div class="col-md-8">
-
 </div>

@@ -20,9 +20,11 @@
         <td><%= finished_book.author.titleize %></td>
         <td><%= finished_book.genre %></td>
         <td><%= truncate(finished_book.central_idea, length: 100) %></td>
-        <td><%= link_to 'Show', finished_book %></td>
-        <td><%= link_to 'Edit', edit_finished_book_path(finished_book) %></td>
-        <td><%= link_to 'Destroy', finished_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View', finished_book %></td>
+        <% if current_user %>
+          <td><%= link_to 'Edit', edit_finished_book_path(finished_book) %></td>
+          <td><%= link_to 'Destroy', finished_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -20,5 +20,7 @@
   <%= @finished_book.central_idea %>
 </p>
 
-<%= link_to 'Edit', edit_finished_book_path(@finished_book) %> |
+<% if current_user %>
+  <%= link_to 'Edit', edit_finished_book_path(@finished_book) %> |
+<% end %>
 <%= link_to 'Back', finished_books_path %>

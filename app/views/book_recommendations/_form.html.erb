@@ -8,6 +8,10 @@
   <%= f.text_field :author, class: "form-control", placeholder: "Book author" %>
 
   <%= f.text_area :description, class: "form-control", rows: "5", label: "I would recommend this book because..." %>
+
+  <% if current_user %>
+    <%= f.check_box :by_teacher %>
+  <% end %>
     
   <%= f.submit (@book_recommendation.id ? "Save" : "Add"), class: "btn btn-primary" %>
   <%= link_to 'Cancel', book_recommendations_path, class: "pull-right btn btn-danger" %>

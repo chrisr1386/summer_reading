@@ -13,6 +13,10 @@ class FinishedBooksController < ApplicationController
   end
 
   def edit
+    if !current_user
+      flash[:error] = "You're not allowed to edit finished books."
+      redirect_to finished_books_path
+    end
   end
 
   def create
@@ -35,8 +39,13 @@ class FinishedBooksController < ApplicationController
   end
 
   def destroy
-    @finished_book.destroy
-    flash[:success] = 'Finished book was successfully destroyed.'
+    if current_user
+      @finished_book.destroy
+      flash[:success] = 'Finished book was successfully destroyed.'
+    else
+      flash[:error] = "You're not allowed to remove finished books."
+    end
+
     redirect_to finished_books_path
   end
 

@@ -7,6 +7,10 @@ class BookRecommendationsController < ApplicationController
 
   def new
     @book_recommendation = BookRecommendation.new
+    if current_user
+      @book_recommendation.student = "Mrs. Root"
+      @book_recommendation.by_teacher = true
+    end
   end
 
   def show
@@ -19,7 +23,12 @@ class BookRecommendationsController < ApplicationController
 
   def create
     @book_recommendation = BookRecommendation.new(book_recommendation_params)
-    @book_recommendation.by_teacher = false
+
+    if current_user
+      @book_recommendation.by_teacher = params[:book_recommendation][:by_teacher]
+    else
+      @book_recommendation.by_teacher = false
+    end
 
     if @book_recommendation.save
       flash[:success] = "Recommendation successfully created."
@@ -30,8 +39,13 @@ class BookRecommendationsController < ApplicationController
   end
 
   def destroy
-    @book_recommendation.destroy
-    flash[:success] = "Book recommendation was successfully destroyed."
+    if current_user
+      @book_recommendation.destroy
+      flash[:success] = "Book recommendation was successfully destroyed."
+    else
+      flash[:error] = "You're not allowed to remove recommendations."
+    end
+
     redirect_to book_recommendations_path
   end
 

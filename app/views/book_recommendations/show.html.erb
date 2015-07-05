@@ -5,7 +5,7 @@
 <br>
 <br>
 
-<div class="col-md-4">
+<div class="col-md-4" style="padding-left: 0;">
   <div class="list-group">
     <% @book_recommendations.each do |rec| %>
       <%= link_to rec, class: "list-group-item #{@book_recommendation && rec.id == @book_recommendation.id ? 'active' : ''}" do %>
@@ -21,16 +21,23 @@
   </div>
 </div>
 
-<div class="col-md-8">
-  <p>
-    <h4>I would recommend this book because...</h4>
-    <%= @book_recommendation.description %>   
-  </p>
+<div class="col-md-8" style="padding-right: 0;">
+  <h4 style="margin-top: 0;">I would recommend this book because...</h4>
+  <p><%= @book_recommendation.description %></p>
+  <br>
 
   <% @book_recommendation.comments.each do |comment| %>
-    <div class="well well-sm">
-      <h4><%= comment.student.titleize %></h4>
-      <p><%= comment.body %></p>
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <h4>
+          <%= comment.student.titleize %>
+          <div class="pull-right">
+            <%= comment.created_at.strftime("%x") %>
+          </div>
+        </h4>
+      </div>
+
+      <div class="panel-body"><%= comment.body %></div>
     </div>
   <% end %>
 

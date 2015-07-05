@@ -1,7 +1,12 @@
 <h1>Recommendations by Mrs. Root</h1>
+
+<% if current_user %>
+  <%= link_to 'I want to recommend a book', new_book_recommendation_path, class: "pull-left btn btn-primary" %>
+<% end %>
+<br>
 <br>
 
-<div class="col-md-4">
+<div class="col-md-4" style="padding-left: 0;">
   <div class="list-group">
     <% @book_recommendations.each do |rec| %>
       <%= link_to book_recommendation_path(rec) + "?by_teacher=true", class: "list-group-item #{@book_recommendation && rec.id == @book_recommendation.id ? 'active' : ''}" do %>
